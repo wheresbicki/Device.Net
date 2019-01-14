@@ -1,4 +1,5 @@
-﻿using Device.Net.Windows;
+﻿using Device.Net;
+using Device.Net.Windows;
 using Microsoft.Win32.SafeHandles;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,9 @@ namespace Usb.Net.Windows
         public void Dispose()
         {
             var isSuccess = WinUsbApiCalls.WinUsb_Free(Handle);
+            WindowsDeviceBase.HandleError(isSuccess, "Interface could not be disposed");
+
+            isSuccess = APICalls.CloseHandle(Handle);
             WindowsDeviceBase.HandleError(isSuccess, "Interface could not be disposed");
         }
     }

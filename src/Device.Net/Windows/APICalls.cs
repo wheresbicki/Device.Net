@@ -2,6 +2,8 @@
 using System;
 using Microsoft.Win32.SafeHandles;
 using System.Runtime.InteropServices;
+using System.Runtime.ConstrainedExecution;
+using System.Security;
 
 namespace Device.Net
 {
@@ -26,6 +28,12 @@ namespace Device.Net
         #region Kernel32
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern SafeFileHandle CreateFile(string lpFileName, uint dwDesiredAccess, uint dwShareMode, IntPtr lpSecurityAttributes, uint dwCreationDisposition, uint dwFlagsAndAttributes, IntPtr hTemplateFile);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        //[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
+        //[SuppressUnmanagedCodeSecurity]
+        //[return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool CloseHandle(SafeFileHandle hObject);
 
         // Used to read bytes from the serial connection. 
         [DllImport("kernel32.dll", SetLastError = true)]

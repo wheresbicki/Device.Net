@@ -138,9 +138,9 @@ namespace Usb.Net.Windows
 
                 base.Dispose();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //TODO: Logging
+                Logger.Log("Error disposing of device", ex, nameof(WindowsUsbDevice));
             }
 
             _IsDisposing = false;
