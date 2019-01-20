@@ -148,7 +148,7 @@ namespace Usb.Net.Windows
         #endregion
 
         #region Private Static Methods
-        private static ConnectedDeviceDefinition GetDeviceDefinition(SafeFileHandle defaultInterfaceHandle, string deviceId)
+        private static ConnectedDeviceDefinition GetDeviceDefinition(IntPtr defaultInterfaceHandle, string deviceId)
         {
             var deviceDefinition = new ConnectedDeviceDefinition(deviceId) { DeviceType = DeviceType.Usb };
 
@@ -179,7 +179,7 @@ namespace Usb.Net.Windows
             return deviceDefinition;
         }
 
-        private static UsbInterface GetInterface(SafeFileHandle interfaceHandle)
+        private static UsbInterface GetInterface(IntPtr interfaceHandle)
         {
             var retVal = new UsbInterface { Handle = interfaceHandle };
             var isSuccess = WinUsbApiCalls.WinUsb_QueryInterfaceSettings(interfaceHandle, 0, out var interfaceDescriptor);

@@ -9,7 +9,7 @@ namespace Usb.Net.Windows
 {
     internal class UsbInterface : IDisposable
     {
-        public SafeFileHandle Handle { get; set; }
+        public IntPtr Handle { get; set; }
         public WinUsbApiCalls.USB_INTERFACE_DESCRIPTOR USB_INTERFACE_DESCRIPTOR { get; set; }
         public List<UsbInterfacePipe> UsbInterfacePipes { get; } = new List<UsbInterfacePipe>();
         public UsbInterfacePipe ReadPipe => UsbInterfacePipes.FirstOrDefault(p => p.IsRead);

@@ -33,7 +33,7 @@ namespace Device.Net
         //[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
         //[SuppressUnmanagedCodeSecurity]
         //[return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CloseHandle(SafeFileHandle hObject);
+        public static extern bool CloseHandle(IntPtr hObject);
 
         // Used to read bytes from the serial connection. 
         [DllImport("kernel32.dll", SetLastError = true)]
