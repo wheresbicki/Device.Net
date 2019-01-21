@@ -1,6 +1,5 @@
 ﻿using Device.Net;
 using Device.Net.Windows;
-using Microsoft.Win32.SafeHandles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +10,9 @@ namespace Usb.Net.Windows
     {
         #region Fields
         private bool _IsDisposed;
+        #endregion
+
+        #region Public Properties
         public IntPtr Handle { get; set; }
         public WinUsbApiCalls.USB_INTERFACE_DESCRIPTOR USB_INTERFACE_DESCRIPTOR { get; set; }
         public List<UsbInterfacePipe> UsbInterfacePipes { get; } = new List<UsbInterfacePipe>();
@@ -27,8 +29,8 @@ namespace Usb.Net.Windows
             var isSuccess = WinUsbApiCalls.WinUsb_Free(Handle);
             WindowsDeviceBase.HandleError(isSuccess, "Interface could not be disposed");
 
-            isSuccess = APICalls.CloseHandle(Handle);
-            WindowsDeviceBase.HandleError(isSuccess, "Interface could not be disposed");
+            //isSuccess = APICalls.CloseHandle(Handle);
+            //WindowsDeviceBase.HandleError(isSuccess, "Interface could not be disposed");
         }
         #endregion
     }
